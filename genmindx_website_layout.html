@@ -48,7 +48,7 @@
           <div class="device-mockup">
             <div class="screen">
               <!-- Placeholder for product screenshot -->
-              <img src="/assets/genx-screenshot.png" alt="GenX dashboard example">
+              <img id="dynamic-hero" src="/assets/hero-home.png" alt="section preview">
             </div>
           </div>
         </div>
@@ -184,6 +184,23 @@
     const nav = document.querySelector('.main-nav');
     btn && btn.addEventListener('click', () => nav.classList.toggle('open'));
   </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const img = document.getElementById("dynamic-hero");
+    if (!img) return;
+
+    const page = window.location.pathname;
+
+    if (page.includes("index.html")) img.src = "assets/hero-home.png";
+    if (page.includes("about.html")) img.src = "assets/hero-about.png";
+    if (page.includes("solutions.html")) img.src = "assets/hero-solutions.png";
+    if (page.includes("genx.html")) img.src = "assets/hero-genx.png";
+    if (page.includes("training.html")) img.src = "assets/hero-training.png";
+    if (page.includes("contact.html")) img.src = "assets/hero-contact.png";
+});
+</script>
+  
 </body>
 </html>
 
