@@ -8,10 +8,179 @@
   <meta name="keywords" content="machine vision, AI inspection, GenX, Halcon, Cognex, Keyence, industrial automation, vision software">
   <meta name="author" content="GenMindX">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <meta property="og:title" content="GenMindX — Machine Vision & AI Solutions">
+  <meta property="og:description" content="Custom vision systems, AI inspection, and industrial automation built for modern manufacturing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.genmindx.com/">
+  <meta property="og:image" content="assets/og-image.png">
 </head>
 <body>
-  <!-- Simplified -->
-  <h1>GenMindX Website</h1>
-  <p>Your full site HTML has been included.</p>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">GenMindX</a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#genx">GenX</a>
+        <a href="#training">Training</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn-outline" href="#contact">Get Quote</a>
+      <button class="nav-toggle" aria-label="Open navigation">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <h1>Precision Machine Vision & Industrial AI</h1>
+          <p class="lead">Custom inspection systems, deep-learning models, and high-performance vision software for semiconductor, life science, EV and electronics manufacturing.</p>
+          <div class="hero-ctas">
+            <a class="btn-primary" href="#contact">Contact Sales</a>
+            <a class="btn-ghost" href="#genx">Explore GenX</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="device-mockup">
+            <div class="screen">
+              <img src="assets/genx-screenshot.png" alt="GenX dashboard example">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section container">
+      <div class="grid grid-2">
+        <div>
+          <h2>About GenMindX</h2>
+          <p>GenMindX is a Malaysia-based system integrator specializing in machine vision, AI inspection and industrial automation. We combine domain expertise with modern software engineering to deliver reliable, low-latency inspection solutions.</p>
+          <ul class="bullets">
+            <li>Industry focus: Semiconductor, Life Science, EV, Electronics</li>
+            <li>Partners: Cognex, Keyence, Halcon, Hikvision</li>
+            <li>Custom software: GenX — C#/.NET, Halcon integrations</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Why choose us</h3>
+          <p>We deliver tested systems, clear documentation and smooth integration — from camera selection to deployment and training.</p>
+          <div class="kpis">
+            <div><strong>10+</strong><span>Years in automation</span></div>
+            <div><strong>200+</strong><span>Projects delivered</span></div>
+            <div><strong>99.9%</strong><span>Uptime SLAs</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions" class="section alt">
+      <div class="container">
+        <h2>Our Solutions</h2>
+        <div class="cards">
+          <article class="card feature">
+            <h4>Custom Vision Systems</h4>
+            <p>Camera selection, optics, and lighting design for robust inspection.</p>
+          </article>
+          <article class="card feature">
+            <h4>Deep Learning Inspection</h4>
+            <p>Defect detection, OCR, and classification with model training and deployment.</p>
+          </article>
+          <article class="card feature">
+            <h4>GenX Integration</h4>
+            <p>Real-time capture, processing pipeline, IO and dashboarding with our GenX framework.</p>
+          </article>
+          <article class="card feature">
+            <h4>Training & Support</h4>
+            <p>Hands-on training for engineers and onsite commissioning.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="genx" class="section container">
+      <h2>GenX — Our Machine Vision Software</h2>
+      <div class="grid grid-2">
+        <div>
+          <p>GenX is a high-performance C#/.NET machine vision framework designed for industrial cameras, Halcon algorithms and optional deep-learning models. It focuses on low-latency image pipelines and easy system integration.</p>
+          <ul class="bullets">
+            <li>Multi-camera support (GigE, USB3, GenTL)</li>
+            <li>Halcon 24.x integrations and optional YOLO models</li>
+            <li>Real-time IO, TCP/IP and Modbus support</li>
+            <li>Dashboard, logs, and configurable alarm actions</li>
+          </ul>
+          <a class="btn-primary" href="#contact">Request GenX Demo</a>
+        </div>
+        <div class="card">
+          <h3>Technical Snapshot</h3>
+          <table class="tech-table">
+            <tr><th>Language</th><td>C# (.NET 8)</td></tr>
+            <tr><th>Algorithms</th><td>Halcon 24.11, OpenCV, TensorRT (optional)</td></tr>
+            <tr><th>Deployment</th><td>Windows Server / Edge PCs</td></tr>
+            <tr><th>Integrations</th><td>PLC IO, TCP/IP, MES</td></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="training" class="section">
+      <div class="container">
+        <h2>Training & Workshops</h2>
+        <p>Tailored training for engineers: Cognex, Halcon, Keyence, model training and deployment best practices.</p>
+        <div class="grid grid-3">
+          <div class="card small">
+            <h4>Cognex & VisionPro</h4>
+            <p>From basics to advanced pattern matching and flow control.</p>
+          </div>
+          <div class="card small">
+            <h4>Halcon Workshops</h4>
+            <p>Algorithm tuning, region handling, and blob analysis.</p>
+          </div>
+          <div class="card small">
+            <h4>Deep Learning</h4>
+            <p>Model labeling, training, and deployment to edge devices.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section container contact-section">
+      <h2>Contact Us</h2>
+      <div class="grid grid-2 contact-grid">
+        <form class="contact-form" action="https://formspree.io/f/mjvayrln" method="POST">
+          <label>Full name<input type="text" name="name" required></label>
+          <label>Email<input type="email" name="email" required></label>
+          <label>Company<input type="text" name="company"></label>
+          <label>Message<textarea name="message" rows="5" required></textarea></label>
+          <button class="btn-primary" type="submit">Send Message</button>
+        </form>
+        <div class="contact-info card">
+          <p><strong>Email</strong><br>jeron@genmindx.com</p>
+          <p><strong>Phone</strong><br>+60 17-377 9811</p>
+          <p><strong>Address</strong><br>Penang, Malaysia</p>
+          <div class="map-placeholder">Map (add embed)</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 GenMindX Sdn. Bhd. | All Rights Reserved.</p>
+      <nav class="footer-nav">
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Simple mobile nav toggle
+    const btn = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.main-nav');
+    btn && btn.addEventListener('click', () => nav.classList.toggle('open'));
+  </script>
 </body>
 </html>
