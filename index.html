@@ -1,44 +1,36 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Home — GenMindX</title>
-<meta name="description" content="GenMindX — Machine Vision & AI Solutions">
-<link rel="stylesheet" href="styles.css">
-<link rel="icon" href="assets/favicon.ico">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Genmindx — Single Page</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Helper styles for show/hide and nav */
+    main > section { display: none; padding: 2rem; }
+    main > section.active { display: block; }
+    nav a { cursor: pointer; margin-right: 1rem; }
+    nav a.active { font-weight: 600; text-decoration: underline; }
+  </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="index.html">GenMindX</a>
-    <nav class="main-nav" aria-label="Primary">
-      <a href="index.html#home">Home</a>
-      <a href="about.html">About</a>
-      <a href="solutions.html">Solutions</a>
-      <a href="genx.html">GenX</a>
-      <a href="training.html">Training</a>
-      <a href="contact.html">Contact</a>
+  <header>
+    <nav id="site-nav">
+      <a data-page="home" href="#home">Home</a>
+      <a data-page="about" href="#about">About</a>
+      <a data-page="genx" href="#genx">GenX</a>
+      <a data-page="solutions" href="#solutions">Solutions</a>
+      <a data-page="training" href="#training">Training</a>
+      <a data-page="contact" href="#contact">Contact</a>
     </nav>
-    <a class="btn-outline" href="contact.html">Get Quote</a>
-    <button class="nav-toggle" aria-label="Open navigation">☰</button>
-  </div>
-</header>
+  </header>
 
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-content">
-      <h1>Precision Machine Vision & Industrial AI</h1>
-      <p class="lead">Custom inspection systems and AI-powered vision solutions for manufacturing.</p>
-    </div>
-    <div class="hero-art device-mockup">
-      <div class="screen"><img src="assets/hero_home.png" alt="GenX screenshot"></div>
-    </div>
-  </div>
-</section>
-
-<main class="container small" style="padding-top:40px">
-
+  <main id="content">
+    <!-- NOTE: Paste the original index.html main/body content here between the markers.
+         Example: find your old index.html, copy the content from inside <main>...</main> (or from <body>...</body>)
+         and replace the placeholder below. This ensures the Home section shows as expected after overwrite. -->
+    <section id="home">
+      <main class="container small" style="padding-top:40px">
 <div>
   <h2>Welcome to GenMindX</h2>
   <p class="muted">We design, build and deploy industrial machine vision systems using advanced AI and robust engineering practices.</p>
@@ -48,18 +40,88 @@
     <div class="card feature"><h4>GenX Software</h4><p>High-performance C#/.NET vision platform for edge deployments.</p></div>
   </div>
 </div>
-
 </main>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <p>© 2025 GenMindX Sdn. Bhd. | All Rights Reserved.</p>
-    <nav class="footer-nav">
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-    </nav>
-  </div>
-</footer>
-<script>const btn=document.querySelector('.nav-toggle');const nav=document.querySelector('.main-nav');btn&&btn.addEventListener('click',()=>nav.classList.toggle('open'))</script>
+    </section>
+
+    <!-- These sections will fetch the other page fragments (about.html, genx.html, etc.) -->
+    <section id="about" data-src="about.html"></section>
+    <section id="genx" data-src="genx.html"></section>
+    <section id="solutions" data-src="solutions.html"></section>
+    <section id="training" data-src="training.html"></section>
+    <section id="contact" data-src="contact.html"></section>
+  </main>
+
+  <footer>
+    <small>© Genmindx</small>
+  </footer>
+
+  <script>
+    // Extract main or body content from fetched HTML
+    function extractContent(html) {
+      const mainMatch = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
+      if (mainMatch) return mainMatch[1];
+      const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+      if (bodyMatch) return bodyMatch[1];
+      return html;
+    }
+
+    async function loadSection(section) {
+      const src = section.dataset.src;
+      if (!src) return;
+      if (section.dataset.loaded === "true") return;
+      try {
+        const res = await fetch(src, {cache: "no-cache"});
+        if (!res.ok) throw new Error("Fetch failed: " + res.status);
+        const txt = await res.text();
+        const content = extractContent(txt);
+        section.innerHTML = content;
+        section.dataset.loaded = "true";
+        // Re-run inline scripts found in the fragment
+        const scripts = Array.from(section.querySelectorAll('script'));
+        scripts.forEach(s => {
+          const newScript = document.createElement('script');
+          if (s.src) {
+            newScript.src = s.src;
+            newScript.async = false;
+          } else {
+            newScript.textContent = s.textContent;
+          }
+          document.body.appendChild(newScript);
+          s.remove();
+        });
+      } catch (err) {
+        section.innerHTML = '<p>Unable to load content.</p><pre>' + err.message + '</pre>';
+      }
+    }
+
+    const sections = Array.from(document.querySelectorAll('main > section'));
+
+    async function showPage(pageId, pushState = true) {
+      const target = document.getElementById(pageId);
+      if (!target) return;
+      await loadSection(target);
+      sections.forEach(s => s.classList.toggle('active', s.id === pageId));
+      document.querySelectorAll('nav a').forEach(a => a.classList.toggle('active', a.dataset.page === pageId));
+      if (pushState) history.pushState({page: pageId}, "", "#" + pageId);
+    }
+
+    document.getElementById('site-nav').addEventListener('click', e => {
+      const a = e.target.closest('a[data-page]');
+      if (!a) return;
+      e.preventDefault();
+      showPage(a.dataset.page);
+    });
+
+    window.addEventListener('popstate', e => {
+      const page = (e.state && e.state.page) || location.hash.replace('#', '') || 'home';
+      showPage(page, false);
+    });
+
+    (async function init() {
+      const initial = location.hash ? location.hash.replace('#', '') : 'home';
+      await showPage(initial, false);
+    })();
+  </script>
 </body>
 </html>
